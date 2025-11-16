@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring the GEO Datasets - Roadmap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        nav .home-link {
+            font-size: 1.2em;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        .artifact-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .artifact-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .artifact-section p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .artifact-embed {
+            width: 100%;
+            height: 700px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #f0f0f0;
+        }
+
+        .resources {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .resources h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .resources ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .resources li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .resources li:last-child {
+            border-bottom: none;
+        }
+
+        .resources a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .resources a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .artifact-embed {
+                height: 500px;
+            }
+
+            .artifact-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="../index.html" class="home-link">← Back to Home</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1>🔬 Exploring the GEO Datasets</h1>
+            <p>Learn to search, download, and analyze gene expression data from NCBI's GEO database.</p>
+        </div>
+
+        <div class="artifact-section">
+            <h2>Interactive Learning Roadmap</h2>
+            <p>Follow this step-by-step roadmap to master GEO database exploration. Each node provides guidance on essential skills and resources.</p>
+            
+            <!-- Your Claude artifact embedded -->
+            <iframe 
+                class="artifact-embed"
+                src="https://claude.ai/public/artifacts/5803cb51-c822-4236-9e5c-5e7c9a6053fa"
+                title="GEO Datasets Learning Roadmap">
+            </iframe>
+
+            <div class="buttons">
+                <a href="https://claude.ai/public/artifacts/5803cb51-c822-4236-9e5c-5e7c9a6053fa" 
+                   class="btn btn-primary" 
+                   target="_blank">
+                    Open in Full Screen
+                </a>
+                <a href="#resources" class="btn btn-secondary">View Resources</a>
+            </div>
+        </div>
+
+        <div class="artifact-section" id="resources">
+            <h2>Essential Resources</h2>
+            <p>Complement your learning with these curated resources for GEO database exploration:</p>
+
+            <div class="resources">
+                <h3>🌐 Official Documentation</h3>
+                <ul>
+                    <li><a href="https://www.ncbi.nlm.nih.gov/geo/" target="_blank">NCBI Gene Expression Omnibus (GEO) Homepage</a></li>
+                    <li><a href="https://www.ncbi.nlm.nih.gov/geo/info/overview.html" target="_blank">GEO Overview and Guide</a></li>
+                    <li><a href="https://www.ncbi.nlm.nih.gov/geo/info/datasets.html" target="_blank">GEO Datasets Information</a></li>
+                </ul>
+            </div>
+
+            <div class="resources">
+                <h3>📚 Tutorials & Guides</h3>
+                <ul>
+                    <li><a href="https://www.ncbi.nlm.nih.gov/geo/info/geo_paccess.html" target="_blank">Programmatic Access to GEO Data</a></li>
+                    <li><a href="https://bioconductor.org/packages/release/bioc/html/GEOquery.html" target="_blank">GEOquery R Package - Access GEO Data in R</a></li>
+                    <li>GEO DataSets Advanced Search Builder</li>
+                </ul>
+            </div>
+
+            <div class="resources">
+                <h3>🔧 Essential Tools</h3>
+                <ul>
+                    <li>GEO2R - Online differential expression analysis tool</li>
+                    <li>GEOquery (R/Bioconductor) - Download and parse GEO data</li>
+                    <li>Python's GEOparse library - Parse GEO data in Python</li>
+                    <li>ArrayExpress - Alternative gene expression database</li>
+                </ul>
+            </div>
+
+            <div class="resources">
+                <h3>📖 Recommended Reading</h3>
+                <ul>
+                    <li>Barrett T, et al. (2013) "NCBI GEO: archive for functional genomics data sets"</li>
+                    <li>Clough E, Barrett T (2016) "The Gene Expression Omnibus Database"</li>
+                    <li>Edgar R, et al. (2002) "Gene Expression Omnibus: NCBI gene expression and hybridization array data repository"</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
