@@ -3,262 +3,521 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exploring the GEO Datasets - Roadmap</title>
+    <title>Exploring the GEO Datasets - Interactive Guide</title>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
+            margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
             background: #f5f5f5;
         }
-
         nav {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 15px 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-
-        nav .container {
+        nav .nav-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
         }
-
         nav a {
             color: white;
             text-decoration: none;
             font-weight: 500;
+            font-size: 1.2em;
         }
-
         nav a:hover {
             opacity: 0.8;
         }
-
-        nav .home-link {
-            font-size: 1.2em;
-        }
-
-        .container {
+        #root {
             max-width: 1200px;
             margin: 40px auto;
             padding: 0 20px;
-        }
-
-        .header {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            color: #667eea;
-            font-size: 2.5em;
-            margin-bottom: 15px;
-        }
-
-        .header p {
-            font-size: 1.1em;
-            color: #666;
-        }
-
-        .artifact-section {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-
-        .artifact-section h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-        }
-
-        .artifact-section p {
-            margin-bottom: 20px;
-            color: #666;
-        }
-
-        .artifact-embed {
-            width: 100%;
-            height: 700px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 12px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: #667eea;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #5568d3;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #667eea;
-            border: 2px solid #667eea;
-        }
-
-        .btn-secondary:hover {
-            background: #f0f0f0;
-        }
-
-        .resources {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .resources h3 {
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .resources ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .resources li {
-            padding: 10px 0;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .resources li:last-child {
-            border-bottom: none;
-        }
-
-        .resources a {
-            color: #667eea;
-            text-decoration: none;
-        }
-
-        .resources a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2em;
-            }
-
-            .artifact-embed {
-                height: 500px;
-            }
-
-            .artifact-section {
-                padding: 20px;
-            }
         }
     </style>
 </head>
 <body>
     <nav>
-        <div class="container">
-            <a href="../index.html" class="home-link">← Back to Home</a>
+        <div class="nav-container">
+            <a href="../index.html">← Back to Home</a>
         </div>
     </nav>
+    
+    <div id="root"></div>
 
-    <div class="container">
-        <div class="header">
-            <h1>🔬 Exploring the GEO Datasets</h1>
-            <p>Learn to search, download, and analyze gene expression data from NCBI's GEO database.</p>
-        </div>
+    <script type="text/babel" data-type="module">
+        const { useState } = React;
 
-        <div class="artifact-section">
-            <h2>Interactive Learning Roadmap</h2>
-            <p>Follow this step-by-step roadmap to master GEO database exploration. Each node provides guidance on essential skills and resources.</p>
+        // Simple icon components using SVG
+        const Search = ({ size = 20 }) => (
+          <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+        );
+
+        const CheckCircle = ({ size = 20, className = "" }) => (
+          <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        );
+
+        const XCircle = ({ size = 20 }) => (
+          <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="15" y1="9" x2="9" y2="15"></line>
+            <line x1="9" y1="9" x2="15" y2="15"></line>
+          </svg>
+        );
+
+        const AlertTriangle = ({ size = 20 }) => (
+          <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        );
+
+        const GEODatasetGuide = () => {
+          const [activeTab, setActiveTab] = useState('search');
+          const [showChecklist, setShowChecklist] = useState(false);
+
+          const searchTips = [
+            { tip: 'Use disease name + "normal tissue"', example: 'lung cancer normal tissue' },
+            { tip: 'Add specific cell types if relevant', example: 'hepatocellular carcinoma liver tissue' },
+            { tip: 'Include treatment if interested', example: 'breast cancer chemotherapy' },
+            { tip: 'Try gene names for focused studies', example: 'BRCA1 mutation expression' }
+          ];
+
+          const evaluationCriteria = [
+            {
+              criterion: 'Sample Size',
+              good: '≥10 samples per group',
+              warning: '5-9 samples per group',
+              bad: '<5 samples per group',
+              why: 'Small samples = unreliable statistics'
+            },
+            {
+              criterion: 'Platform Type',
+              good: 'Illumina/Affymetrix microarray or RNA-seq',
+              warning: 'Older platforms (GPL96, GPL97)',
+              bad: 'Custom/uncommon platforms',
+              why: 'Standard platforms have better annotation'
+            },
+            {
+              criterion: 'Data Completeness',
+              good: 'All samples have clear labels',
+              warning: 'Some missing metadata',
+              bad: 'Cryptic sample names only',
+              why: 'You need to know which is control vs disease'
+            },
+            {
+              criterion: 'Publication Status',
+              good: 'Published with PMID',
+              warning: 'Unpublished but recent',
+              bad: 'Very old and unpublished',
+              why: 'Published = peer-reviewed quality'
+            },
+            {
+              criterion: 'Processing Status',
+              good: '"Processed data" available',
+              warning: 'Only raw data',
+              bad: 'No clear data files',
+              why: 'Processed = normalized and ready to use'
+            }
+          ];
+
+          const commonDatasets = [
+            {
+              id: 'GSE42568',
+              title: 'Breast Cancer vs Normal',
+              samples: '104 cancer + 17 normal',
+              platform: 'Affymetrix U133 Plus 2.0',
+              reason: 'Large sample size, well-annotated, commonly used in tutorials',
+              good: true
+            },
+            {
+              id: 'GSE54236',
+              title: 'Lung Adenocarcinoma',
+              samples: '58 tumor + 58 adjacent normal',
+              platform: 'Illumina',
+              reason: 'Paired samples (same patient), reduces variability',
+              good: true
+            },
+            {
+              id: 'GSE62944',
+              title: 'Pancreatic Cancer',
+              samples: '45 tumor + 45 normal',
+              platform: 'Affymetrix',
+              reason: 'Good balance, clear experimental design',
+              good: true
+            }
+          ];
+
+          const redFlags = [
+            '❌ "Cell line only" - Not real tissue',
+            '❌ Mixed time points without clear grouping',
+            '❌ "Pilot study" with n=3',
+            '❌ Multiple treatment arms (too complex for beginners)',
+            '❌ No clear control group',
+            '❌ Description says "technical replicates only"'
+          ];
+
+          const InfoBox = ({ type, children }) => {
+            const colors = {
+              good: 'bg-green-50 border-green-200 text-green-800',
+              warning: 'bg-yellow-50 border-yellow-200 text-yellow-800',
+              bad: 'bg-red-50 border-red-200 text-red-800',
+              info: 'bg-blue-50 border-blue-200 text-blue-800'
+            };
             
-            <!-- Your Claude artifact embedded -->
-            <iframe 
-                class="artifact-embed"
-                src="https://claude.ai/public/artifacts/5803cb51-c822-4236-9e5c-5e7c9a6053fa"
-                title="GEO Datasets Learning Roadmap">
-            </iframe>
+            return (
+              <div className={`p-3 rounded border ${colors[type]} text-sm mb-2`}>
+                {children}
+              </div>
+            );
+          };
 
-            <div class="buttons">
-                <a href="https://claude.ai/public/artifacts/5803cb51-c822-4236-9e5c-5e7c9a6053fa" 
-                   class="btn btn-primary" 
-                   target="_blank">
-                    Open in Full Screen
-                </a>
-                <a href="#resources" class="btn btn-secondary">View Resources</a>
+          return (
+            <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+              <h1 className="text-3xl font-bold mb-2 text-gray-800">GEO Dataset Selection Guide</h1>
+              <p className="text-gray-600 mb-6">Master Steps 1 & 2: Finding and Understanding Datasets</p>
+
+              {/* Navigation Tabs */}
+              <div className="flex gap-2 mb-6 border-b overflow-x-auto">
+                <button
+                  onClick={() => setActiveTab('search')}
+                  className={`px-4 py-2 font-medium whitespace-nowrap ${activeTab === 'search' ? 'border-b-2 border-blue-600 text-blue-600' : 'text-gray-600'}`}
+                >
+                  1. Search Strategy
+                </button>
+                <button
+                  onClick={() => setActiveTab('evaluate')}
+                  className={`px-4 py-2 font-medium whitespace-nowrap ${activeTab === 'evaluate' ? 'border-b-2 border-blue-600 text-blue-600' : 'text-gray-600'}`}
+                >
+                  2. Evaluation Criteria
+                </button>
+                <button
+                  onClick={() => setActiveTab('examples')}
+                  className={`px-4 py-2 font-medium whitespace-nowrap ${activeTab === 'examples' ? 'border-b-2 border-blue-600 text-blue-600' : 'text-gray-600'}`}
+                >
+                  3. Good Examples
+                </button>
+                <button
+                  onClick={() => setActiveTab('download')}
+                  className={`px-4 py-2 font-medium whitespace-nowrap ${activeTab === 'download' ? 'border-b-2 border-blue-600 text-blue-600' : 'text-gray-600'}`}
+                >
+                  4. Download Data
+                </button>
+              </div>
+
+              {/* Search Strategy Tab */}
+              {activeTab === 'search' && (
+                <div>
+                  <div className="bg-blue-50 border border-blue-200 p-4 rounded mb-6">
+                    <h3 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
+                      <Search size={20} />
+                      Where to Search
+                    </h3>
+                    <p className="text-blue-800 mb-3">
+                      <strong>Main GEO Search:</strong> <span className="font-mono bg-white px-2 py-1 rounded text-sm">https://www.ncbi.nlm.nih.gov/geo/</span>
+                    </p>
+                    <p className="text-sm text-blue-700">
+                      Click "DataSets" (GDS) for curated datasets or "Series" (GSE) for all datasets
+                    </p>
+                  </div>
+
+                  <h3 className="font-bold text-lg mb-3">Search Tips & Examples</h3>
+                  <div className="space-y-3">
+                    {searchTips.map((item, idx) => (
+                      <div key={idx} className="border border-gray-200 p-4 rounded">
+                        <div className="font-medium text-gray-800 mb-1">{item.tip}</div>
+                        <div className="text-sm text-gray-600">
+                          Example: <span className="font-mono bg-gray-100 px-2 py-1 rounded">{item.example}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 bg-yellow-50 border border-yellow-200 p-4 rounded">
+                    <h4 className="font-bold text-yellow-900 mb-2">🎯 Pro Tip</h4>
+                    <p className="text-sm text-yellow-800">
+                      Start with <strong>"DataSets" (GDS)</strong> - these are curated and higher quality.
+                      If you can't find what you want, then search "Series" (GSE) which has everything.
+                    </p>
+                  </div>
+
+                  <div className="mt-6">
+                    <h3 className="font-bold text-lg mb-3 text-red-700">Red Flags to Avoid</h3>
+                    <div className="space-y-2">
+                      {redFlags.map((flag, idx) => (
+                        <div key={idx} className="text-sm text-gray-700 pl-4">
+                          {flag}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Evaluation Criteria Tab */}
+              {activeTab === 'evaluate' && (
+                <div>
+                  <InfoBox type="info">
+                    <strong>Once you find a dataset, evaluate it using these criteria:</strong>
+                  </InfoBox>
+
+                  <div className="space-y-4">
+                    {evaluationCriteria.map((item, idx) => (
+                      <div key={idx} className="border border-gray-300 rounded p-4">
+                        <h3 className="font-bold text-lg mb-3 text-gray-800">{item.criterion}</h3>
+                        
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-3">
+                          <div className="bg-green-50 border border-green-200 p-2 rounded">
+                            <div className="text-xs text-green-600 font-semibold mb-1 flex items-center gap-1">
+                              <CheckCircle size={14} /> GOOD
+                            </div>
+                            <div className="text-xs text-gray-700">{item.good}</div>
+                          </div>
+                          
+                          <div className="bg-yellow-50 border border-yellow-200 p-2 rounded">
+                            <div className="text-xs text-yellow-600 font-semibold mb-1 flex items-center gap-1">
+                              <AlertTriangle size={14} /> OK
+                            </div>
+                            <div className="text-xs text-gray-700">{item.warning}</div>
+                          </div>
+                          
+                          <div className="bg-red-50 border border-red-200 p-2 rounded">
+                            <div className="text-xs text-red-600 font-semibold mb-1 flex items-center gap-1">
+                              <XCircle size={14} /> BAD
+                            </div>
+                            <div className="text-xs text-gray-700">{item.bad}</div>
+                          </div>
+                        </div>
+                        
+                        <div className="text-sm text-gray-600 italic">
+                          Why it matters: {item.why}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 bg-purple-50 border border-purple-200 p-4 rounded">
+                    <h4 className="font-bold text-purple-900 mb-2">✅ Quick Checklist</h4>
+                    <button
+                      onClick={() => setShowChecklist(!showChecklist)}
+                      className="text-sm text-purple-700 underline hover:text-purple-900"
+                    >
+                      {showChecklist ? 'Hide' : 'Show'} printable checklist
+                    </button>
+                    {showChecklist && (
+                      <div className="mt-3 space-y-1 text-sm">
+                        <div>☐ Sample size ≥10 per group?</div>
+                        <div>☐ Clear control vs treatment groups?</div>
+                        <div>☐ Standard platform (Illumina/Affymetrix)?</div>
+                        <div>☐ "Processed data" available?</div>
+                        <div>☐ Published or well-documented?</div>
+                        <div>☐ Sample metadata makes sense?</div>
+                        <div>☐ No major red flags?</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Examples Tab */}
+              {activeTab === 'examples' && (
+                <div>
+                  <InfoBox type="info">
+                    <strong>These datasets are beginner-friendly and commonly used in tutorials</strong>
+                  </InfoBox>
+
+                  <div className="space-y-4">
+                    {commonDatasets.map((ds, idx) => (
+                      <div key={idx} className="border-2 border-green-300 rounded p-4 bg-green-50">
+                        <div className="flex items-start justify-between mb-2">
+                          <h3 className="font-bold text-xl text-gray-800">{ds.id}</h3>
+                          <CheckCircle className="text-green-600 flex-shrink-0" size={24} />
+                        </div>
+                        
+                        <div className="mb-3">
+                          <div className="font-medium text-gray-700">{ds.title}</div>
+                          <div className="text-sm text-gray-600 mt-1">
+                            <strong>Samples:</strong> {ds.samples}
+                          </div>
+                          <div className="text-sm text-gray-600">
+                            <strong>Platform:</strong> {ds.platform}
+                          </div>
+                        </div>
+                        
+                        <div className="bg-white border border-green-200 p-3 rounded">
+                          <div className="text-xs text-green-700 font-semibold mb-1">Why this is good:</div>
+                          <div className="text-sm text-gray-700">{ds.reason}</div>
+                        </div>
+
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          <a
+                            href={`https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=${ds.id}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-blue-600 underline hover:text-blue-800"
+                          >
+                            → View on GEO
+                          </a>
+                          <span className="text-gray-400">|</span>
+                          <a
+                            href={`https://www.ncbi.nlm.nih.gov/geo/geo2r/?acc=${ds.id}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-blue-600 underline hover:text-blue-800"
+                          >
+                            → Open in GEO2R
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 bg-blue-50 border border-blue-200 p-4 rounded">
+                    <h4 className="font-bold text-blue-900 mb-2">📚 Practice Exercise</h4>
+                    <p className="text-sm text-blue-800">
+                      Try this: Pick one dataset above, click "View on GEO", and answer:
+                    </p>
+                    <ol className="text-sm text-blue-800 mt-2 ml-4 list-decimal space-y-1">
+                      <li>How many total samples are there?</li>
+                      <li>What tissue type was studied?</li>
+                      <li>Can you find the publication (PMID)?</li>
+                      <li>What year was the data submitted?</li>
+                    </ol>
+                  </div>
+                </div>
+              )}
+
+              {/* Download Data Tab */}
+              {activeTab === 'download' && (
+                <div>
+                  <InfoBox type="info">
+                    <strong>Step 2: Downloading and Understanding the Data</strong>
+                  </InfoBox>
+
+                  <div className="space-y-6">
+                    <div className="border border-gray-300 rounded p-4">
+                      <h3 className="font-bold text-lg mb-3">Method 1: Use GEO2R (Easiest - No Download Needed)</h3>
+                      <ol className="space-y-2 text-sm ml-4 list-decimal">
+                        <li>On the dataset page, click <strong>"Analyze with GEO2R"</strong> button</li>
+                        <li>GEO2R automatically loads the processed data</li>
+                        <li>You see sample names and can assign groups</li>
+                        <li>No files to manage! ✅</li>
+                      </ol>
+                      <div className="mt-3 bg-green-50 p-3 rounded border border-green-200">
+                        <div className="text-sm text-green-800">
+                          <strong>Best for:</strong> Learning the workflow, quick exploration
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="border border-gray-300 rounded p-4">
+                      <h3 className="font-bold text-lg mb-3">Method 2: Download Files Manually</h3>
+                      <ol className="space-y-2 text-sm ml-4 list-decimal">
+                        <li>On dataset page, scroll to bottom</li>
+                        <li>Look for <strong>"Download family"</strong> section</li>
+                        <li>Download the <span className="font-mono bg-gray-100 px-1">Series Matrix File(s)</span></li>
+                        <li>This is a .txt file with the expression data</li>
+                      </ol>
+                      
+                      <div className="mt-3 space-y-2">
+                        <div className="bg-blue-50 p-3 rounded border border-blue-200">
+                          <div className="text-xs text-blue-700 font-semibold mb-1">What you'll get:</div>
+                          <div className="text-sm text-blue-800">
+                            A tab-delimited text file where:<br/>
+                            • Rows = genes (20,000+)<br/>
+                            • Columns = samples<br/>
+                            • Values = expression levels
+                          </div>
+                        </div>
+                        
+                        <div className="bg-yellow-50 p-3 rounded border border-yellow-200">
+                          <div className="text-xs text-yellow-700 font-semibold mb-1">⚠️ File size warning:</div>
+                          <div className="text-sm text-yellow-800">
+                            These files are 10-100 MB. They open in Excel but may be slow.
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-3 bg-purple-50 p-3 rounded border border-purple-200">
+                        <div className="text-sm text-purple-800">
+                          <strong>Best for:</strong> Working in R/Python, reproducible analysis, offline work
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="border border-gray-300 rounded p-4">
+                      <h3 className="font-bold text-lg mb-3">Understanding the Downloaded Data</h3>
+                      
+                      <div className="bg-gray-50 p-3 rounded border border-gray-200 mb-3">
+                        <div className="text-xs font-mono text-gray-600 mb-1">Example data structure:</div>
+                        <pre className="text-xs overflow-x-auto">
+{`ID_REF        GSM1039843  GSM1039844  GSM1039845
+1007_s_at     6.234       5.891       7.123
+1053_at       8.456       8.234       8.567
+117_at        9.012       10.234      9.456`}
+                        </pre>
+                      </div>
+
+                      <div className="space-y-2 text-sm">
+                        <div><strong>ID_REF:</strong> Gene identifier (probe ID)</div>
+                        <div><strong>GSM numbers:</strong> Sample IDs (you need to look up what they represent)</div>
+                        <div><strong>Numbers:</strong> Expression values (usually log2 transformed)</div>
+                      </div>
+
+                      <div className="mt-3 bg-red-50 p-3 rounded border border-red-200">
+                        <div className="text-sm text-red-800">
+                          <strong>Critical:</strong> The GSM IDs are cryptic! You need to check the metadata to know which samples are "cancer" vs "normal"
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 bg-green-50 border border-green-200 p-4 rounded">
+                    <h4 className="font-bold text-green-900 mb-2">✅ You're Ready When You Can:</h4>
+                    <ul className="space-y-1 text-sm text-green-800 ml-4 list-disc">
+                      <li>Find a dataset on GEO</li>
+                      <li>Evaluate if it's good quality</li>
+                      <li>Identify the sample groups</li>
+                      <li>Either load it in GEO2R OR download the matrix file</li>
+                      <li>Understand what the numbers represent</li>
+                    </ul>
+                  </div>
+                </div>
+              )}
+
+              <div className="mt-8 p-4 bg-gray-50 rounded border border-gray-300">
+                <h3 className="font-bold mb-2">🎯 Next Steps</h3>
+                <p className="text-sm text-gray-700 mb-3">
+                  Once you've mastered finding and understanding datasets, you'll choose:
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                  <div className="bg-white p-3 rounded border border-gray-200">
+                    <div className="font-semibold text-blue-700 mb-1">Path A: GEO2R (Web)</div>
+                    <div className="text-gray-600">Quick, visual, good for learning concepts</div>
+                  </div>
+                  <div className="bg-white p-3 rounded border border-gray-200">
+                    <div className="font-semibold text-purple-700 mb-1">Path B: R/Python</div>
+                    <div className="text-gray-600">Powerful, reproducible, industry standard</div>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
+          );
+        };
 
-        <div class="artifact-section" id="resources">
-            <h2>Essential Resources</h2>
-            <p>Complement your learning with these curated resources for GEO database exploration:</p>
-
-            <div class="resources">
-                <h3>🌐 Official Documentation</h3>
-                <ul>
-                    <li><a href="https://www.ncbi.nlm.nih.gov/geo/" target="_blank">NCBI Gene Expression Omnibus (GEO) Homepage</a></li>
-                    <li><a href="https://www.ncbi.nlm.nih.gov/geo/info/overview.html" target="_blank">GEO Overview and Guide</a></li>
-                    <li><a href="https://www.ncbi.nlm.nih.gov/geo/info/datasets.html" target="_blank">GEO Datasets Information</a></li>
-                </ul>
-            </div>
-
-            <div class="resources">
-                <h3>📚 Tutorials & Guides</h3>
-                <ul>
-                    <li><a href="https://www.ncbi.nlm.nih.gov/geo/info/geo_paccess.html" target="_blank">Programmatic Access to GEO Data</a></li>
-                    <li><a href="https://bioconductor.org/packages/release/bioc/html/GEOquery.html" target="_blank">GEOquery R Package - Access GEO Data in R</a></li>
-                    <li>GEO DataSets Advanced Search Builder</li>
-                </ul>
-            </div>
-
-            <div class="resources">
-                <h3>🔧 Essential Tools</h3>
-                <ul>
-                    <li>GEO2R - Online differential expression analysis tool</li>
-                    <li>GEOquery (R/Bioconductor) - Download and parse GEO data</li>
-                    <li>Python's GEOparse library - Parse GEO data in Python</li>
-                    <li>ArrayExpress - Alternative gene expression database</li>
-                </ul>
-            </div>
-
-            <div class="resources">
-                <h3>📖 Recommended Reading</h3>
-                <ul>
-                    <li>Barrett T, et al. (2013) "NCBI GEO: archive for functional genomics data sets"</li>
-                    <li>Clough E, Barrett T (2016) "The Gene Expression Omnibus Database"</li>
-                    <li>Edgar R, et al. (2002) "Gene Expression Omnibus: NCBI gene expression and hybridization array data repository"</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<GEODatasetGuide />);
+    </script>
 </body>
 </html>
