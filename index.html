@@ -55,14 +55,22 @@
             margin-bottom: 50px;
         }
 
-        .section-header {
-    margin-top: 60px;
-    margin-bottom: 30px;
-    padding: 30px;
+.section-container {
     background: white;
     border-radius: 15px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     border-left: 5px solid #667eea;
+    padding: 40px;
+    margin-top: 40px;
+}
+
+.section-container:first-of-type {
+    margin-top: 0;
+}
+
+.section-header {
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 .section-header h2 {
@@ -189,86 +197,85 @@
                 <p>Explore curated roadmaps designed to guide you through essential bioinformatics topics, from basic programming to advanced data analysis.</p>
             </div>
        
-            <!-- SECTION 1: GEO Workflow -->
-            <div class="section-header">
-               <h2>🎯 From GEO to Novel Results</h2>
-               <p>Complete workflow for discovering drug targets from gene expression data</p>
-            </div>
-    
-            <div class="roadmaps-grid">
-                
-                <!-- GEO Roadmap 1 -->
-                <a href="roadmaps/geo-datasets.html" class="roadmap-card">
-                    <h3>🔬  Exploring the GEO Datasets</h3>
-                    <p>Learn to search, download, and analyze gene expression data from NCBI's GEO database.</p>
-                    <span class="status complete">Complete</span>
-                </a>
+           <!-- SECTION 1: GEO Workflow -->
+<div class="section-container">
+    <div class="section-header">
+       <h2>🎯 From GEO to Novel Results</h2>
+       <p>Complete workflow for discovering drug targets from gene expression data</p>
+    </div>
 
-                <!-- GEO Roadmap 2 -->
-                <a href="soon.html" class="roadmap-card">
-                    <h3>🌐 GEO2R Analysis </h3>
-                    <p>Web-based analysis for beginners. No coding required. </p>
-                    <span class="status in-progress">In Progress</span>
-                </a>
-
-                <!-- GEO Roadmap 3 -->
-                <a href="soon.html" class="roadmap-card">
-                    <h3>📊 R/Python Analysis</h3>
-                    <p>Industry standard approach for reproducible workflows. More control and flexibility</p>
-                    <span class="status planned">Planned</span>
-                </a>
-
-                <!-- GEO Roadmap 4 -->
-                <a href="soon.html" class="roadmap-card">
-                    <h3>🧬 Validation & Filtering</h3>
-                    <p>Fold change interpretation. Statistical significance and biological relevance checks.</p>
-                    <span class="status in-progress">In Progress</span>
-                </a>
-
-              <!-- GEO Roadmap 5 -->
-                <a href="soon.html" class="roadmap-card">
-                    <h3>🔗 Pathway & Network Analysis</h3>
-                    <p>GO enrichment, KEGG pathways, Protein-protein interactions, Hub gene identification.</p>
-                    <span class="status planned">Planned</span>
-                </a>
-                
-                <!-- GEO Roadmap 6 -->
-                <a href="soon.html" class="roadmap-card">
-                    <h3>📚 Literature Mining & Target Selection </h3>
-                    <p> PubMed searches, Druggability assessment, Clinical relevance, Patent searches</p>
-                    <span class="status planned">Planned</span>
-                </a>
-          </div>
-
-              <!-- SECTION 2: Fundamentals -->
-              <div class="section-header">
-                    <h2>🔧 Bioinformatics Fundamentals</h2>
-                    <p>Essential skills and tools for beginners</p>
-              </div>
+    <div class="roadmaps-grid">
         
-              <div class="roadmaps-grid">
-                  
-                <!--  Primer Design -->
-                    <a href="soon.html" class="roadmap-card">
-                        <h3>🧬 Primer Design</h3>
-                        <p>Design effective PCR primers for DNA amplification, sequencing, and molecular cloning experiments.</p>
-                   <span class="status in-progress">In Progress</span>
-                    </a>
-               
-                <!-- Data Visualization -->
-                    <a href="soon.html" class="roadmap-card">
-                        <h3>📈 Data Visualization</h3>
-                        <p>Create compelling visualizations for biological data using modern tools and libraries.</p>
-                    <span class="status planned">Planned</span>
-                    </a>
+        <!-- GEO Roadmap 1 -->
+        <a href="roadmaps/geo-datasets.html" class="roadmap-card">
+            <h3>🔬  Exploring the GEO Datasets</h3>
+            <p>Learn to search, download, and analyze gene expression data from NCBI's GEO database.</p>
+            <span class="status complete">Complete</span>
+        </a>
+        <!-- GEO Roadmap 2 -->
+        <a href="soon.html" class="roadmap-card">
+            <h3>🌐 GEO2R Analysis </h3>
+            <p>Web-based analysis for beginners. No coding required. </p>
+            <span class="status in-progress">In Progress</span>
+        </a>
+        <!-- GEO Roadmap 3 -->
+        <a href="soon.html" class="roadmap-card">
+            <h3>📊 R/Python Analysis</h3>
+            <p>Industry standard approach for reproducible workflows. More control and flexibility</p>
+            <span class="status planned">Planned</span>
+        </a>
+        <!-- GEO Roadmap 4 -->
+        <a href="soon.html" class="roadmap-card">
+            <h3>🧬 Validation & Filtering</h3>
+            <p>Fold change interpretation. Statistical significance and biological relevance checks.</p>
+            <span class="status in-progress">In Progress</span>
+        </a>
+      <!-- GEO Roadmap 5 -->
+        <a href="soon.html" class="roadmap-card">
+            <h3>🔗 Pathway & Network Analysis</h3>
+            <p>GO enrichment, KEGG pathways, Protein-protein interactions, Hub gene identification.</p>
+            <span class="status planned">Planned</span>
+        </a>
+        
+        <!-- GEO Roadmap 6 -->
+        <a href="soon.html" class="roadmap-card">
+            <h3>📚 Literature Mining & Target Selection </h3>
+            <p> PubMed searches, Druggability assessment, Clinical relevance, Patent searches</p>
+            <span class="status planned">Planned</span>
+        </a>
+  </div>
+</div>
 
-                <!-- Linux -->
-                    <a href="soon.html" class="roadmap-card">
-                        <h3>💻 Linux Command Line</h3>
-                        <p>Essential Unix/Linux commands for bioinformatics workflows and data processing.</p>
-                        <span class="status in-progress">In Progress</span>
-                </a> 
-            </div>
+<!-- SECTION 2: Fundamentals -->
+<div class="section-container">
+    <div class="section-header">
+        <h2>🔧 Bioinformatics Fundamentals</h2>
+        <p>Essential skills and tools for beginners</p>
+    </div>
+
+    <div class="roadmaps-grid">
+        
+        <!--  Primer Design -->
+        <a href="soon.html" class="roadmap-card">
+            <h3>🧬 Primer Design</h3>
+            <p>Design effective PCR primers for DNA amplification, sequencing, and molecular cloning experiments.</p>
+       <span class="status in-progress">In Progress</span>
+        </a>
+       
+        <!-- Data Visualization -->
+        <a href="soon.html" class="roadmap-card">
+            <h3>📈 Data Visualization</h3>
+            <p>Create compelling visualizations for biological data using modern tools and libraries.</p>
+        <span class="status planned">Planned</span>
+        </a>
+        <!-- Linux -->
+        <a href="soon.html" class="roadmap-card">
+            <h3>💻 Linux Command Line</h3>
+            <p>Essential Unix/Linux commands for bioinformatics workflows and data processing.</p>
+            <span class="status in-progress">In Progress</span>
+        </a> 
+    </div>
+</div>
      
             <footer>
             <p>Built with ❤️ for the bioinformatics community</p>
